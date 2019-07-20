@@ -13,13 +13,34 @@ robot = Robot()
 
 def main():
     print("Woven graduate coding test - Robot CLI App \n")
-    print("Available commands: \n * `F` - move forward 1 unit \n * `B` - move backward 1 unit \n * `R` - turn right 90 degrees \n * `L` - turn left 90 degrees \n example: `F1,R1,B2,L1,B3` \n")
-    command = input("Please enter command: ")
+    print("""Available commands: \n
+    * `F` - move forward 1 unit 
+    * `B` - move backward 1 unit  
+    * `R` - turn right 90 degrees 
+    * `L` - turn left 90 degrees \n 
+    example: `F1,R1,B2,L1,B3` \n""")
+    command = input("Please enter command string: ")
     commandArray = command.split(",")
     print(commandArray)
+    moveRobot(commandArray)
     calculateDistance()
 
-def calculateDistance():
+def moveRobot(commandArray):
+    # validation
+    original = commandArray[0]
+    for elem in commandArray:
+        if elem[0] == 'F':
+            robot.y = robot.y + int(elem[1])
+        elif elem[0] == 'B':
+            robot.y = robot.y - int(elem[1])
+        elif elem[0] == 'R':
+            robot.x = robot.x + int(elem[1])
+        elif elem[0] == 'L':
+            robot.x = robot.x - int(elem[1])
+    return calculateDistance(robot.x, robot.y, original)
+
+
+def calculateDistance(x1,y1,x2,y2):
     p1 = [0, 0]
     p2 = [0, -4]
     distance = math.sqrt(((p1[0] - p2[0]) ** 2) + ((p1[1] - p2[1]) ** 2))
