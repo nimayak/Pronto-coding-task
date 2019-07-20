@@ -24,11 +24,11 @@ def main():
     print("Your input string: " + str(commandArray))
     moveRobot(commandArray)
 
-def moveRobot(commandArray):
+def moveRobot(commandarray):
     # validation
     originalx = 0
     originaly = 0
-    for elem in commandArray:
+    for elem in commandarray:
         if elem[0] == 'F':
             robot.y = robot.y + int(elem[1])
         elif elem[0] == 'B':
