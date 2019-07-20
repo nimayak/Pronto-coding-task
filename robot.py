@@ -21,13 +21,13 @@ def main():
     example: `F1,R1,B2,L1,B3` \n""")
     command = input("Please enter command string: ")
     commandArray = command.split(",")
-    print(commandArray)
+    print("Your input string: " + str(commandArray))
     moveRobot(commandArray)
-    calculateDistance()
 
 def moveRobot(commandArray):
     # validation
-    original = commandArray[0]
+    originalx = 0
+    originaly = 0
     for elem in commandArray:
         if elem[0] == 'F':
             robot.y = robot.y + int(elem[1])
@@ -37,17 +37,15 @@ def moveRobot(commandArray):
             robot.x = robot.x + int(elem[1])
         elif elem[0] == 'L':
             robot.x = robot.x - int(elem[1])
-    return calculateDistance(robot.x, robot.y, original)
+    return calculateDistance(originalx, originaly, robot.x, robot.y)
 
 
 def calculateDistance(x1,y1,x2,y2):
-    p1 = [0, 0]
-    p2 = [0, -4]
+    p1 = [x1, y1]
+    p2 = [x2, y2]
     distance = math.sqrt(((p1[0] - p2[0]) ** 2) + ((p1[1] - p2[1]) ** 2))
-    print(distance)
+    print("The distance between the origin and the new position is: " + str(distance))
 
 if __name__ == "__main__":
     main()
-
-
 
