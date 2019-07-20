@@ -13,12 +13,16 @@ robot = Robot()
 
 def main():
     print("Woven graduate coding test - Robot CLI App \n")
+    print("""Move a robot by telling it to go forwards or backwards or left or right.  
+These commands must be  in the format <command><number>.  
+For example 'L1' means 'turn left by 90 degrees once'.  
+'B2' would mean go backwards 2 units. \n""")
     print("""Available commands: \n
     * `F` - move forward 1 unit 
     * `B` - move backward 1 unit  
     * `R` - turn right 90 degrees 
     * `L` - turn left 90 degrees \n 
-    example: `F1,R1,B2,L1,B3` \n""")
+    Example: `F1,R1,B2,L1,B3` \n""")
     command = input("Please enter command string: ")
     commandArray = command.split(",")
     print("Your input string: " + str(commandArray))
