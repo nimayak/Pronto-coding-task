@@ -1,4 +1,5 @@
 # Woven graduate coding test
+# Move a robot by telling it to go forwards or backwards or left or right.
 # Inputs: - a string of comma-separated commands eg `F1,R1,B2,L1,B3`
 # Output: - the minimum amount of distance to get back to the starting point (`4` in this case)
 
