@@ -5,12 +5,15 @@
 
 import math
 
+
 class Robot:
     x = 0
     y = 0
     direction = ""
 
+
 robot = Robot()
+
 
 def main():
     print("Woven graduate coding test - Robot CLI App \n")
@@ -25,15 +28,26 @@ For example 'L1' means 'turn left by 90 degrees once'.
     * `L` - turn left 90 degrees \n 
     Example: `F1,R1,B2,L1,B3` \n""")
     command = input("Please enter command string: ")
-    commandArray = command.split(",")
-    print("Your input string: " + str(commandArray))
-    moveRobot(commandArray)
+    command_array = command.split(",")
+    print("Your input string: " + str(command_array))
+    valid_command_array = check_valid(command_array)
+    x1, y1, x2, y2 = move_robot(valid_command_array)
+    distance = calculate_distance(x1, y1, x2, y2)
+    print("\n The distance between the origin and the new position is: " + distance)
 
-def moveRobot(commandarray):
-    # validation
-    originalx = 0
-    originaly = 0
-    for elem in commandarray:
+
+def check_valid(command_array):
+    for elem in command_array:
+        if elem[0] in ('F', 'B', 'R', 'L') and isinstance(int(elem[1]), int):
+            return command_array
+        else:
+            print("invalid input")
+
+
+def move_robot(command_array):
+    original_x = 0
+    original_y = 0
+    for elem in command_array:
         if elem[0] == 'F':
             robot.y = robot.y + int(elem[1])
         elif elem[0] == 'B':
@@ -42,15 +56,13 @@ def moveRobot(commandarray):
             robot.x = robot.x + int(elem[1])
         elif elem[0] == 'L':
             robot.x = robot.x - int(elem[1])
-    return calculateDistance(originalx, originaly, robot.x, robot.y)
+    return original_x, original_y, robot.x, robot.y
 
 
-def calculateDistance(x1,y1,x2,y2):
-    p1 = [x1, y1]
-    p2 = [x2, y2]
-    distance = math.sqrt(((p1[0] - p2[0]) ** 2) + ((p1[1] - p2[1]) ** 2))
-    print("The distance between the origin and the new position is: " + str(distance))
+def calculate_distance(x1, y1, x2, y2):
+    distance = math.sqrt(((x2 - x1) ** 2) + ((y2 - y1) ** 2))
+    return str(distance)
+
 
 if __name__ == "__main__":
     main()
-
